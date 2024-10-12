@@ -225,7 +225,7 @@ if( !function_exists('rescue_toggle_shortcode') ) {
 				), $atts );
 				
 		$title = sanitize_text_field( $atts['title'] );
-		$class = sanitize_text_field( $atts['class'] );
+		$class = sanitize_html_class( $atts['class'] );
 		$visibility = sanitize_html_class( $atts['visibility'] );
 				
 		wp_enqueue_script('rescue_toggle');
@@ -254,6 +254,8 @@ if (!function_exists('rescue_tabgroup_shortcode')) {
 		preg_match_all( '/tab title="([^\"]+)"/i', $content, $matches, PREG_OFFSET_CAPTURE );
 		$tab_titles = array();
 		if( isset($matches[1]) ){ $tab_titles = $matches[1]; }
+		
+		
 		$output = '';
 		if( count($tab_titles) ){
 		    $output .= '<div id="rescue-tab-'. rand(1, 100) .'" class="rescue-tabs">';
@@ -280,12 +282,13 @@ if (!function_exists('rescue_tab_shortcode')) {
 				), $atts );
 		
 		$title = wp_kses_post( $atts['title'] );
-		$class = sanitize_text_field( $atts['class'] );
+		// $class = sanitize_text_field( $atts['class'] );
+		$class = sanitize_html_class( $atts['class'] );
 		$visibility = sanitize_html_class( $atts['visibility'] );
 		
 		$content = wp_kses_post( $content );
 		
-		return '<div id="rescue-tab-'. sanitize_title( $title ) .'" class="tab-content '. $class .' rescue-'. $visibility .'"><p>'. do_shortcode( $content ) .'</p></div>';
+	    return '<div id="rescue-tab-'. sanitize_title( $title ) .'" class="tab-content '. $class .' rescue-'. $visibility .'"><p>'. do_shortcode( $content ) .'</p></div>';
 	}
 	add_shortcode( 'rescue_tab', 'rescue_tab_shortcode' );
 }
@@ -337,7 +340,7 @@ if (!function_exists('rescue_donation_tab_shortcode')) {
 				), $atts );
 		
 		$title = sanitize_text_field( $atts['title'] );
-		$class = sanitize_text_field( $atts['class'] );
+		$class = sanitize_html_class( $atts['class'] );
 		$visibility = sanitize_html_class( $atts['visibility'] );
 		
 		$content = wp_kses_post( $content );
@@ -369,7 +372,7 @@ if( !function_exists('rescue_progressbar_shortcode') ) {
 		$percentage = intval( $atts['percentage'] );
 		$color = sanitize_text_field( $atts['color'] );
 		$show_percent = boolval($atts['show_percent'] );
-		$class = sanitize_text_field( $atts['class'] );
+		$class = sanitize_html_class( $atts['class'] );
 		$visibility = sanitize_text_field( $atts['visibility'] );
 		
 		// Display the accordion	';

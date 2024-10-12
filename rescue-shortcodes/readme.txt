@@ -5,9 +5,9 @@ Contributors: rescuethemes
 Donate link: https://rescuethemes.com
 Tags: shortcodes, buttons, columns, tabs, animations, spacing, highlight
 Requires at least: 4.0
-Tested up to: 6.5
+Tested up to: 6.5.5
 
-Stable tag: 2.8
+Stable tag: 2.9
 
 A lightweight WordPress shortcodes plugin.
 
@@ -70,6 +70,10 @@ MIT License - https://github.com/imakewebthings/waypoints/blob/master/licenses.t
 Copyright: @foodgoesinmouth
 
 == Changelog ==
+
+= 2.9, October 11, 2024 =
+* Tested with WordPress 6.5.5
+* Improve sanitization on tabs
 
 = 2.8, May 30, 2024 =
 
