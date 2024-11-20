@@ -44,7 +44,7 @@ if( !function_exists('rescue_spacing_shortcode') ) {
 		$size = sanitize_html_class( $atts['size'] );
 		$class = sanitize_html_class( $atts['class'] );
 		 
-	 return '<hr class="rescue-spacing '. $class .'" style="height: '. $size .'" />';
+	 return '<hr class="rescue-spacing '. esc_attr( $class ) .'" style="height: '. esc_attr( $size ) .'" />';
 	}
 	add_shortcode( 'rescue_spacing', 'rescue_spacing_shortcode' );
 }
@@ -66,7 +66,7 @@ if ( !function_exists( 'rescue_highlight_shortcode' ) ) {
 		  $class = sanitize_html_class( $atts['class'] );
 		  $content = wp_kses_post( $content );
 		  
-		  return '<span class="rescue-highlight rescue-highlight-'. $color .' '. $class .' rescue-'. $visibility .'">' . do_shortcode( $content ) . '</span>';
+		  return '<span class="rescue-highlight rescue-highlight-'. esc_attr( $color ) .' '. esc_attr( $class ) .' rescue-'. esc_attr( $visibility ) .'">' . do_shortcode( $content ) . '</span>';
 
 	}
 	add_shortcode('rescue_highlight', 'rescue_highlight_shortcode');
@@ -114,7 +114,7 @@ if( !function_exists('rescue_button_shortcode') ) {
 		$title = sanitize_html_class( $atts['class'] );
 		$target = sanitize_html_class( $atts['target'] );
 		$rel = sanitize_html_class( $atts['rel'] );
-		$attsborder_radius = sanitize_html_class( $atts['border_radius'] );
+		$border_radius = sanitize_html_class( $atts['border_radius'] );
 		$class = sanitize_html_class( $atts['class'] );
 		$icon_left = sanitize_html_class( $atts['icon_left'] );
 		$icon_right = sanitize_html_class( $atts['icon_right'] );
@@ -130,12 +130,12 @@ if( !function_exists('rescue_button_shortcode') ) {
 		  
 		$content = wp_kses_post( $content );
 		
-		$button .= '<a style="background: ' . $colorhex . ';border-radius: ' . $border_radius . ' " href="' . $url . '" class="rescue-button ' . $color . ' '. $class .' rescue-'. $visibility .'" target="_'.$target.'" title="'. $title .'" '. $rel .'>';
+		$button .= '<a style="background: ' . esc_attr( $colorhex ) . ';border-radius: ' . esc_attr( $border_radius ) . ' " href="' . esc_url( $url ) . '" class="rescue-button ' . esc_attr( $color ) . ' '. esc_attr( $class ) .' rescue-'. esc_attr( $visibility ) .'" target="_'. esc_attr(  $target ).'" title="'. $title .'" '. esc_attr( $rel ) .'>';
 			$button .= '<span class="rescue-button-inner">';
 				if ( $icon_enabled == true ) $button .=  RescueButtonIcon( $atts ); 
-				if ( $icon_left ) $button .= '<span class="rescue-button-icon-left icon-'. $icon_left .'"></span>';
+				if ( $icon_left ) $button .= '<span class="rescue-button-icon-left icon-'. esc_attr( $icon_left ) .'"></span>';
 				$button .= $content;
-				if ( $icon_right ) $button .= '<span class="rescue-button-icon-right icon-'. $icon_right .'"></span>';
+				if ( $icon_right ) $button .= '<span class="rescue-button-icon-right icon-'. esc_attr( $icon_right ) .'"></span>';
 			$button .= '</span>';
 
 		$button .= '</a>';
@@ -182,7 +182,7 @@ if( !function_exists('rescue_box_shortcode') ) {
 		$content = wp_kses_post( $content );
 
 	    $alert_content = '';
-	    $alert_content .= '<div class="rescue-box ' . $color . ' '.$float.' '. $class .' rescue-'. $visibility .'" style="text-align:'. $text_align .'; width:'. $width .';'. $style_attr .'">';
+	    $alert_content .= '<div class="rescue-box ' . esc_attr( $color ) . ' '. esc_attr( $float ).' '. esc_attr( $class ) .' rescue-'. esc_attr( $visibility ) .'" style="text-align:'. $text_align .'; width:'. $width .';'. $style_attr .'">';
 	    $alert_content .= ' '. do_shortcode($content) .'</div>';
 	    return $alert_content;
 	}
@@ -208,7 +208,7 @@ if( !function_exists('rescue_column_shortcode') ) {
 
   		$content = wp_kses_post( $content );
 		  
-		return '<div class="rescue-column rescue-' . $size . ' rescue-column-'.$position.' '. $class .' rescue-'. $visibility .'">' . do_shortcode($content) . '</div>';
+		return '<div class="rescue-column rescue-' . esc_attr( $size ) . ' rescue-column-'. esc_attr( $position ) .' '. esc_attr( $class) .' rescue-'. esc_attr( $visibility ) .'">' . do_shortcode($content) . '</div>';
 	}
 	add_shortcode('rescue_column', 'rescue_column_shortcode');
 }
@@ -232,7 +232,7 @@ if( !function_exists('rescue_toggle_shortcode') ) {
 		
 		$content = wp_kses_post( $content );
 
-		return '<div class="rescue-toggle '. $class .' rescue-'. $visibility .'"><h3 class="rescue-toggle-trigger">'. $title .'</h3><div class="rescue-toggle-container">' . do_shortcode($content) . '</div></div>';
+		return '<div class="rescue-toggle '. esc_attr( $class ) .' rescue-'. esc_attr( $visibility ) .'"><h3 class="rescue-toggle-trigger">'. $title .'</h3><div class="rescue-toggle-container">' . do_shortcode($content) . '</div></div>';
 	}
 	add_shortcode('rescue_toggle', 'rescue_toggle_shortcode');
 }
@@ -282,13 +282,12 @@ if (!function_exists('rescue_tab_shortcode')) {
 				), $atts );
 		
 		$title = wp_kses_post( $atts['title'] );
-		// $class = sanitize_text_field( $atts['class'] );
 		$class = sanitize_html_class( $atts['class'] );
 		$visibility = sanitize_html_class( $atts['visibility'] );
 		
 		$content = wp_kses_post( $content );
 		
-	    return '<div id="rescue-tab-'. sanitize_title( $title ) .'" class="tab-content '. $class .' rescue-'. $visibility .'"><p>'. do_shortcode( $content ) .'</p></div>';
+	    return '<div id="rescue-tab-'. sanitize_title( $title ) .'" class="tab-content '. esc_attr( $class ) .' rescue-'. esc_attr( $visibility ) .'"><p>'. do_shortcode( $content ) .'</p></div>';
 	}
 	add_shortcode( 'rescue_tab', 'rescue_tab_shortcode' );
 }
@@ -308,6 +307,8 @@ if (!function_exists('rescue_donation_tabgroup_shortcode')) {
 		//Enque scripts
 		wp_enqueue_script('jquery-ui-tabs');
 		wp_enqueue_script('rescue_donation_tabs');
+		
+		$group_title = sanitize_text_field( $atts['group_title'] );
 
 		preg_match_all( '/tab title="([^\"]+)"/i', $content, $matches, PREG_OFFSET_CAPTURE );
 		$tab_titles = array();
@@ -344,7 +345,7 @@ if (!function_exists('rescue_donation_tab_shortcode')) {
 		$visibility = sanitize_html_class( $atts['visibility'] );
 		
 		$content = wp_kses_post( $content );
-		return '<div id="rescue-tab-'. sanitize_title( $title ) .'" class="tab-content '. $class .' rescue-'. $visibility .'"><p>'. do_shortcode( $content ) .'</p></div>';
+		return '<div id="rescue-tab-'. sanitize_title( $title ) .'" class="tab-content '. esc_attr( $class ) .' rescue-'. esc_attr( $visibility ) .'"><p>'. do_shortcode( $content ) .'</p></div>';
 	}
 	add_shortcode( 'rescue_donation_tab', 'rescue_donation_tab_shortcode' );
 }
@@ -368,6 +369,7 @@ if( !function_exists('rescue_progressbar_shortcode') ) {
 		wp_enqueue_script('rescue_waypoints');
 		
 		
+		
 		$title = sanitize_text_field( $atts['title'] );
 		$percentage = intval( $atts['percentage'] );
 		$color = sanitize_text_field( $atts['color'] );
@@ -376,9 +378,9 @@ if( !function_exists('rescue_progressbar_shortcode') ) {
 		$visibility = sanitize_text_field( $atts['visibility'] );
 		
 		// Display the accordion	';
-		$output = '<div class="rescue-progressbar rescue-clearfix '. $class .' rescue-'. $visibility .'" data-percent="'. $percentage .'%">';
-			if ( $title !== '' ) $output .= '<div class="rescue-progressbar-title" style="background: '. $color .';"><span>'. $title .'</span></div>';
-			$output .= '<div class="rescue-progressbar-bar" style="background: '. $color .';"></div>';
+		$output = '<div class="rescue-progressbar rescue-clearfix '. esc_attr( $class ) .' rescue-'. esc_attr( $visibility ) .'" data-percent="'. $percentage .'%">';
+			if ( $title !== '' ) $output .= '<div class="rescue-progressbar-title" style="background: '. esc_attr( $color ) .';"><span>'. $title .'</span></div>';
+			$output .= '<div class="rescue-progressbar-bar" style="background: '. esc_attr( $color ) .';"></div>';
 			if ( $show_percent == 'true' ) {
 				$output .= '<div class="rescue-progress-bar-percent">'.$percentage.'%</div>';
 			}
@@ -427,7 +429,7 @@ if (! function_exists( 'rescue_shortcode_googlemaps' ) ) :
 
 
 
-		$output = '<div id="map_canvas_'.rand(1, 100).'" class="googlemap '. $class .' rescue-'. $visibility .'" style="height:'.$height.'px;width:100%">';
+		$output = '<div id="map_canvas_'.rand(1, 100).'" class="googlemap '. esc_attr( $class ) .' rescue-'. esc_attr( $visibility ) .'" style="height:'.$height.'px;width:100%">';
 			$output .= (!empty($title)) ? '<input class="title" type="hidden" value="'.$title.'" />' : '';
 			$output .= '<input class="location" type="hidden" value="'.$location.'" />';
 			$output .= '<input class="zoom" type="hidden" value="'.$zoom.'" />';
@@ -476,7 +478,7 @@ if (! function_exists( 'RescueFontAwesome' ) ) :
 	    $animated = ($animated) ? 'fa-spin' : '';
 	    $color = ($color) ? ''.$color. '' : '';
 
-	    $theAwesomeFont = '<i style="color:'.$color.'" class="fa '.$type.' '.$size.' '.$rotate.' '.$flip.' '.$pull.' '.$animated.'"></i>';
+	    $theAwesomeFont = '<i style="color:'. esc_attr( $color) .'" class="fa '.$type.' '.$size.' '.$rotate.' '.$flip.' '.$pull.' '.$animated.'"></i>';
 
 	    return $theAwesomeFont;
 	}
@@ -517,7 +519,7 @@ if (! function_exists( 'RescueButtonIcon' ) ) :
 	    $icon_animated = ($icon_animated) ? 'fa-spin' : '';
 	    $icon_color = ($icon_color) ? ''.$icon_color. '' : '';
 
-	    $theAwesomeFont = '<i style="color:'.$icon_color.'; margin-right:'.$icon_margin.'"  class="fa '.$icon_type.' '.$icon_size.' '.$icon_rotate.' '.$icon_flip.' '.$icon_pull.' '.$icon_animated.'"></i>';
+	    $theAwesomeFont = '<i style="color:'. esc_attr( $icon_color ).'; margin-right:'.$icon_margin.'"  class="fa '.$icon_type.' '.$icon_size.' '.$icon_rotate.' '.$icon_flip.' '.$icon_pull.' '.$icon_animated.'"></i>';
 
 	    return $theAwesomeFont;
 	}
@@ -554,7 +556,7 @@ if (! function_exists( 'rescue_animate_shortcode' ) ) :
 	    $delay = ($delay) ? ''.$delay. '' : '';
 	    $iteration = ($iteration) ? ''.$iteration. '' : '';
 
-	    $rescue_animate = '<div class="wow '.$type.'" data-wow-duration="'.$duration.'" data-wow-offset="'.$offset.'" data-wow-delay="'.$delay.'" data-wow-iteration="'.$iteration.'">' . do_shortcode($content) . '</div>';
+	    $rescue_animate = '<div class="wow '. esc_attr( $type ).'" data-wow-duration="'. esc_attr( $duration ).'" data-wow-offset="'. esc_attr( $offset ).'" data-wow-delay="'. esc_attr( $delay ).'" data-wow-iteration="'.esc_attr( $iteration ).'">' . do_shortcode($content) . '</div>';
 
 	    return $rescue_animate;
 	}
