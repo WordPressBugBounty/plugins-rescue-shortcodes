@@ -5,9 +5,9 @@ Contributors: rescuethemes
 Donate link: https://rescuethemes.com
 Tags: shortcodes, buttons, columns, tabs, animations, spacing, highlight
 Requires at least: 4.0
-Tested up to: 6.7
+Tested up to: 6.7.1
 
-Stable tag: 3.0
+Stable tag: 3.1
 
 A lightweight WordPress shortcodes plugin.
 
@@ -22,18 +22,11 @@ When activated, this plugin will add a button to the WordPress text editor to ea
 * Tabbed Content - Create tabbed sections for your content.
 * [Font Awesome](http://fortawesome.github.io/Font-Awesome/) Icons - 500+ icons and counting.
 * Animations - Wrap anything with the animation shortcode and watch it come alive.
-* Google Map - Display a map for any location on any post or page. Requires a Google API key for new sites.
 * Notification Box - Have certain sections of text stand out by creating notices or alerts.
 * Text Highlight - Quickly highlight sections of text to help more important words stand out.
 * Columns - Separate your content with multiple column options.
 * Spacing - Add space between sections on the fly.
 * Progress Bar - Display a sliding progress notification bar
-
-See a demonstration of the shortcodes on the [Rescue Themes site](https://rescuethemes.com/rescue-shortcodes-plugin/).
-
-**New features**
-
-We want to improve the Rescue Shortcodes plugin based on your feedback! Please let us know on the [plugin's Github repo](https://github.com/RescueThemes/rescue-shortcodes) and [subscribe to our mailing list](http://rescuethemes.us6.list-manage.com/subscribe?u=e996b9d9a5&id=a41af7345e) to get notified of new developments.
 
 == Installation ==
 
@@ -71,6 +64,9 @@ Copyright: @foodgoesinmouth
 
 == Changelog ==
 
+= 3.1, October 11, 2024 =
+* Tested with WordPress 6.7.1
+* Improve escaping on output
 
 = 2.9, October 11, 2024 =
 * Tested with WordPress 6.7
