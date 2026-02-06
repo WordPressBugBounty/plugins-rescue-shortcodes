@@ -5,9 +5,9 @@ Contributors: rescuethemes
 Donate link: https://rescuethemes.com
 Tags: shortcodes, buttons, columns, tabs, animations, spacing, highlight
 Requires at least: 4.0
-Tested up to: 6.7.1
+Tested up to: 6.8.3
 
-Stable tag: 3.1
+Stable tag: 3.4
 
 A lightweight WordPress shortcodes plugin.
 
@@ -63,6 +63,17 @@ MIT License - https://github.com/imakewebthings/waypoints/blob/master/licenses.t
 Copyright: @foodgoesinmouth
 
 == Changelog ==
+
+= 3.4, August 27, 2025 =
+* Google Map Shortcode Removed
+
+= 3.3, October 7, 2025 =
+* Tested with WordPress 6.8.3
+* Fix tabs not showing certain content
+
+= 3.2, August 27, 2025 =
+* Tested with WordPress 6.8.2
+* Google Map Removal
 
 = 3.1, October 11, 2024 =
 * Tested with WordPress 6.7.1
